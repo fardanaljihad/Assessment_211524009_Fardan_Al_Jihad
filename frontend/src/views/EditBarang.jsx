@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function BarangForm() {
+export default function EditBarangForm() {
   const [message, setMessage] = useState('');
-  let kodeTenan = 'TK21152400901';
+  let kodeBarang = 'BRG21152400901';
 
   const [formData, setFormData] = useState({
     kodeBarang: '',
@@ -25,10 +25,10 @@ export default function BarangForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `http://localhost:5000/tenan/${kodeTenan}/barang`,
+      const response = await axios.put(
+        `http://localhost:5000/barang/${kodeBarang}`,
         {
-          kodeBarang: formData.kodeBarang, 
+          kodeBarang: formData.kodeBarang,
           namaBarang: formData.namaBarang,
           satuan: formData.satuan,
           hargaSatuan: formData.hargaSatuan,
@@ -36,7 +36,7 @@ export default function BarangForm() {
         }
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         setMessage(response.data.message);
       }
     } catch (error) {
@@ -114,7 +114,7 @@ export default function BarangForm() {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Submit
+          Update
         </button>
       </form>
     </div>

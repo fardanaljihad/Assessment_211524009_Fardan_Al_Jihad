@@ -27,3 +27,23 @@ export const getBarang = async(req, res) => {
     console.log(error.message);
   }
 }
+
+
+export const updateBarang = async (req, res) => {
+  const { kodeBarang } = req.params;
+
+  try {
+    const [updatedRows] = await Barang.update(req.body, {
+      where: { kodeBarang: kodeBarang },
+    });
+
+    if (updatedRows > 0) {
+      res.status(200).json({ message: "Barang berhasil diupdate" });
+    } else {
+      res.status(404).json({ message: "Barang tidak ditemukan" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: "Gagal mengupdate barang" });
+  }
+};

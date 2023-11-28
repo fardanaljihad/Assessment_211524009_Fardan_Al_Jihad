@@ -47,7 +47,7 @@ export default function BarangList() {
                   <div className="btn-group">
                     {/* Add your edit and delete actions here */}
                     {/* Example using React Router for edit action */}
-                    <Link to={`edit-barang/${barang.kodeBarang}`} className="btn btn-sm btn-info me-2">
+                    <Link to={`editbarang/${barang.kodeBarang}`} className="btn btn-sm btn-info me-2">
                       <BiEdit style={{ fontSize: '20px', verticalAlign: 'middle' }} />
                     </Link>
                     <button onClick={() => deleteBudgetRule(barang.kodeBarang)} className="btn btn-sm btn-danger">
