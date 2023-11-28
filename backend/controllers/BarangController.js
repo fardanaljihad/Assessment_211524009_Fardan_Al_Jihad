@@ -47,3 +47,23 @@ export const updateBarang = async (req, res) => {
     res.status(500).json({ message: "Gagal mengupdate barang" });
   }
 };
+
+
+export const deleteBarang = async (req, res) => {
+  const { kodeBarang } = req.params;
+
+  try {
+    const deletedRowCount = await Barang.destroy({
+      where: { kodeBarang: kodeBarang },
+    });
+
+    if (deletedRowCount > 0) {
+      res.status(200).json({ message: "Barang berhasil dihapus" });
+    } else {
+      res.status(404).json({ message: "Barang tidak ditemukan" });
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: "Gagal menghapus barang" });
+  }
+};
